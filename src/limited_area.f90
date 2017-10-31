@@ -214,11 +214,19 @@
             call compact_field_1dINT(bdyMaskVertex, bdyMaskVertexLocal, vertex_map)
             call create_variable_1dINT(ncout, 'bdyMaskVertex', 'nVertices')
 
+            call create_variable_1dINT(ncout, 'parentCellID', 'nCells')
+            call create_variable_1dINT(ncout, 'parentEdgeID', 'nEdges')
+            call create_variable_1dINT(ncout, 'parentVertexID', 'nVertices')
+
             call copyandcompact_static_fields(ncin, ncout, cell_map, edge_map, vertex_map, icell_map, iedge_map, ivertex_map)
 
             call put_variable_1dINT(ncout, bdyMaskCellLocal, 'bdyMaskCell')
             call put_variable_1dINT(ncout, bdyMaskEdgeLocal, 'bdyMaskEdge')
             call put_variable_1dINT(ncout, bdyMaskVertexLocal, 'bdyMaskVertex')
+
+            call put_variable_1dINT(ncout, cell_map, 'parentCellID')
+            call put_variable_1dINT(ncout, edge_map, 'parentEdgeID')
+            call put_variable_1dINT(ncout, vertex_map, 'parentVertexID')
 
             bdyMaskCellLocal = (/(i, i=1,ncout%nCells)/)
             bdyMaskEdgeLocal = (/(i, i=1,ncout%nEdges)/)
