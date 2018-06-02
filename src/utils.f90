@@ -512,6 +512,7 @@
          read(10,*) inside_pt(1), inside_pt(2)
          inside_pt = inside_pt * PI / 180.0
       end if
+      close(10)
 
    end subroutine
 
