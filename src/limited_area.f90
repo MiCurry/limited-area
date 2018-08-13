@@ -239,10 +239,6 @@
             ierr = nf90_enddef(ncout%ncid)
             if (ierr /= NF90_NOERR) call handle_err(ierr, 'nf90_enddef', .true., 'main', ncout%filename)
          end if
-      
-         deallocate(icell_map)
-         deallocate(iedge_map)
-         deallocate(ivertex_map)
 
          write (0,*) "Closing up the new file..."
 
@@ -259,6 +255,10 @@
 
          call close_mpas_file(ncout)
       end do
+
+      deallocate(icell_map)
+      deallocate(iedge_map)
+      deallocate(ivertex_map)
 
       write (0,*) "All Done."
 
